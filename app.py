@@ -89,7 +89,13 @@ def analyze_keywords_ai(seed: str, suggestions: list, serp: dict):
     1. "difficulty_score": integer 0-100
     2. "difficulty_justification": string
     3. "intent_distribution": {{"Informational": %, "Navigational": %, "Commercial": %, "Transactional": %}}
-    4. "keyword_table": list of objects with keys: "keyword", "search_intent", "estimated_monthly_volume", "cpc_usd", "recommended_content_strategy"
+    4. "keyword_table": list of objects with keys: 
+       - "keyword": the text variation string
+       - "search_intent": one of 'Informational', 'Navigational', 'Commercial', 'Transactional'
+       - "estimated_monthly_volume": integer value
+       - "cpc_usd": float number
+       - "keyword_difficulty_percent": integer from 0 to 100 representing individual difficulty for this specific variation term
+       - "recommended_content_strategy": text summary
     """
     response = ai_client.models.generate_content(
         model='gemini-2.5-flash', contents=prompt,
